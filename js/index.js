@@ -15,9 +15,10 @@ const chat = {
 
         .then(function(messages){                           // show messages 
             console.log(messages);
-            document.querySelector('#messageContainer').innerHTML = messages[0].message;
-
-
+            const message = messages[0]; 
+            
+            const select =  document.querySelector('#messageContainer').insertAdjacentHTML ('beforeend', htmlString);
+            this.renderMessage();
         });
 
        
@@ -25,8 +26,17 @@ const chat = {
     },
 
     renderMessage(message) {
+        let htmlString = `<div class="messageItem">
+        <div class="header">
+            <span class="author">${message.author}</span>
+            <span class="time">${message.time}</span>
+        </div>
+        <p>
+           ${message.p}
+        </p>
+    </div> `; 
     }
-
+  
 }
 
 chat.init();
